@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cúspides – Conquistá el Amanecer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Condensed+One&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --gold:  #c97d2e;
+      --navy:  #1e3a52;
+      --cream: #DBD8D0;
+      --white: #ffffff;
+      --font-display: 'Special Gothic Condensed One', sans-serif;
+      --font-body:    'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+   body {
+  font-family: var(--font-body);
+  color: var(--white);
+  background: linear-gradient(180deg,
+    #03090A  0%,
+    #214A66 22%,
+    #5E7E8C 44%,
+    #808080 62%,
+    #BF803D 82%,
+    #DBD8D0 100%
+  );
+  min-height: 100vh;
+  overflow-x: hidden;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><path d="M6 2 L6 22 L11 17.5 L14.5 25 L17.5 23.5 L14 16 L21 16 Z" fill="white" stroke="%23c97d2e" stroke-width="1.8" stroke-linejoin="round"/></svg>') 6 2, auto;
+}
+
+    /* ── NAVBAR ───────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 3rem;
+      background: rgba(3,9,10,0.55);
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .logo img {
+      height: 48px;
+      width: auto;
+    }
+
+    /* Fallback SVG logo if no image */
+    .logo-svg { width: 44px; height: 44px; }
+
+    .logo-text {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: var(--white);
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.2rem;
+    }
+
+    nav ul a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+
+    nav ul a:hover { opacity: 1; }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    #inicio {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 2rem;
+      overflow: hidden;
+    }
+
+    #stars-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 2; }
+
+    @keyframes amanecer {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    text-shadow: 0 0 18px rgba(201,125,46,0.25);
+  }
+}
+
+.hero-content h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 8vw, 6.5rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: 0.01em;
+  color: var(--cream);
+  text-transform: uppercase;
+  margin-bottom: 1.8rem;
+  opacity: 0;
+  animation: amanecer 2.2s ease-out 0.3s forwards;
+}
+
+    .hero-content p {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--white);
+  max-width: 540px;
+  margin: 0 auto 2.4rem;
+  line-height: 1.65;
+  opacity: 0;
+  animation: amanecer 1.8s ease-out 1s forwards;
+}
+
+    .btn {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--white);
+  padding: 0.85rem 2.6rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s, transform 0.2s, box-shadow 0.3s;
+}
+
+.btn:hover {
+  background: #a9641c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 24px rgba(201,125,46,0.65), 0 0 12px rgba(201,125,46,0.4);
+}
+
+    .btn-navy {
+      background: var(--navy);
+    }
+    .btn-navy:hover { background: #152a3d; }
+
+    /* ── NUESTRA MISIÓN ───────────────────────────────── */
+    #nosotros {
+      padding: 8rem 3rem;
+      position: relative;
+    }
+#nosotros {
+  padding: 8rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+#stars-mision {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mision-inner {
+  position: relative;
+  z-index: 1;
+}
+    .mision-inner {
+      max-width: 1150px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .mision-text h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--cream);
+      margin-bottom: 1.8rem;
+      line-height: 1;
+    }
+
+    .mision-text p {
+      color: rgba(255,255,255,0.85);
+      line-height: 1.8;
+      font-size: 0.97rem;
+      margin-bottom: 1rem;
+    }
+
+    .mision-text .btn { margin-top: 1.5rem; }
+
+    .mision-img {
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mision-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.mision-img:hover img {
+  transform: scale(1.08);
+}
+
+.img-ph {
+  color: rgba(255,255,255,0.18);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-align: center;
+  padding: 2rem;
+}
+
+    /* ── EXPEDICIONES ─────────────────────────────────── */
+    #expediciones {
+  padding: 7rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+#stars-expediciones {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#expediciones h2,
+#expediciones .exp-grid {
+  position: relative;
+  z-index: 1;
+}
+
+    #expediciones h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      text-align: center;
+      color: var(--white);
+      margin-bottom: 3.5rem;
+    }
+
+    .exp-grid {
+      max-width: 1150px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 260px);
+      gap: 12px;
+    }
+
+    .exp-card {
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      background: rgba(0,0,0,0.4);
+    }
+
+    .exp-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .exp-card:hover img { transform: scale(1.06); }
+
+    .exp-card .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(13,31,53,0.65);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .exp-card:hover .overlay { opacity: 1; }
+
+    .exp-card .overlay h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+
+    .exp-card .overlay p {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* placeholder cards */
+    .exp-ph {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.12);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+    }
+
+    /* ── NUESTRO EQUIPO ───────────────────────────────── */
+    #equipo {
+      padding: 7rem 3rem;
+    }
+
+    #equipo h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      text-align: center;
+      color: var(--white);
+      margin-bottom: 3.5rem;
+    }
+
+    .team-wrap {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .team-arrow {
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 2.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      opacity: 0.6;
+      padding: 0.5rem 0.8rem;
+      transition: opacity 0.2s;
+      flex-shrink: 0;
+    }
+
+    .team-arrow:hover { opacity: 1; }
+
+    .team-members {
+      display: flex;
+      gap: 2rem;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .team-member {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+  transform: translateY(-10px);
+}
+
+    .team-avatar {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.2);
+      font-size: 0.75rem;
+    }
+
+    .team-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    .team-member .name {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .team-member .btn {
+      padding: 0.6rem 1.8rem;
+      font-size: 0.88rem;
+    }
+
+    .team-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-top: 2.5rem;
+    }
+
+    .dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.5);
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .dot.active { background: rgba(255,255,255,0.7); }
+
+    /* ── PREPARACIÓN ──────────────────────────────────── */
+    #cursos {
+      padding: 7rem 3rem;
+    }
+
+    #cursos h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      text-align: center;
+      color: var(--white);
+      margin-bottom: 3.5rem;
+    }
+
+    .prep-grid {
+      max-width: 1150px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+   .prep-card {
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(0,0,0,0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.prep-card:hover {
+  transform: scale(1.04);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  z-index: 5;
+  position: relative;
+}
+
+    .prep-card .img-wrap {
+      height: 240px;
+      overflow: hidden;
+      background: rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .prep-card .img-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s;
+    }
+
+    .prep-card:hover .img-wrap img { transform: scale(1.05); }
+
+    .prep-card .card-body {
+      background: var(--cream);
+      padding: 1.5rem;
+    }
+
+    .prep-card .card-body h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+
+    .prep-card .card-body p {
+  font-size: 0.9rem;
+  color: #333;
+  line-height: 1.65;
+  max-height: 100px;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.prep-card:hover .card-body p {
+  max-height: 300px;
+}
+
+    /* ── ESCUELA DE GUÍAS ─────────────────────────────── */
+    #guias {
+      padding: 7rem 3rem;
+    }
+
+    #guias h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-align: center;
+      color: var(--white);
+      margin-bottom: 3.5rem;
+    }
+
+    .guias-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .guia-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 2rem 1.8rem;
+      transition: background 0.25s;
+    }
+
+    .guia-card:hover { background: rgba(255,255,255,0.12); }
+
+    .guia-card .num {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 0.8rem;
+    }
+
+    .guia-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+    }
+
+    .guia-card p {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+    }
+
+    /* ── TESTIMONIOS ──────────────────────────────────── */
+    #testimonios {
+      padding: 7rem 3rem;
+    }
+
+    #testimonios h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      text-align: center;
+      color: var(--white);
+      margin-bottom: 3.5rem;
+    }
+
+    .test-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .test-card {
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 2rem;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.test-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.35);
+}
+
+    .test-card p {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.88);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+   .stars {
+  color: #ffffff;   /* beige/cream, como el título */
+  font-size: 1.1rem;
+  margin-bottom: 0.6rem;
+  letter-spacing: 0.1em;
+}
+
+    .test-card .autor {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      color: var(--white);
+    }
+
+    /* ── CONTACTO ─────────────────────────────────────── */
+    #contacto {
+      padding: 7rem 3rem 5rem;
+      text-align: center;
+    }
+
+    #contacto h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+
+    #contacto > p {
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 2.5rem;
+      font-size: 1rem;
+    }
+
+    .contact-form {
+      max-width: 660px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: var(--white);
+      padding: 1rem 1.4rem;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-family: var(--font-body);
+      outline: none;
+      transition: background 0.2s;
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder { color: rgba(255,255,255,0.45); }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus { background: rgba(255,255,255,0.22); }
+
+    .contact-form textarea { resize: vertical; min-height: 150px; }
+
+    .contact-form .btn-navy { align-self: center; padding: 0.9rem 3rem; margin-top: 0.5rem; }
+
+    /* ── FOOTER ───────────────────────────────────────── */
+    footer {
+      padding: 2rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .footer-logo img { height: 38px; }
+
+    .footer-logo-text {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+    }
+
+    footer p {
+      color: rgba(0, 0, 0, 0.4);
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+    }
+    .team-gallery {
+  max-width: 1150px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  padding: 0 3rem;
+}
+
+.team-photo {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  background: rgba(0,0,0,0.4);
+  cursor: pointer;
+}
+
+.team-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.team-photo:hover img {
+  transform: scale(1.06);
+}
+
+.team-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(13,20,26,0) 40%, rgba(13,20,26,0.92) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  gap: 1rem;
+}
+
+.team-name {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white);
+}
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="logo" href="#inicio">
+  <img src="logo.png" alt="Cúspides" />
+  <span class="logo-text"></span>
+</a>
+    <ul>
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#expediciones">Expediciones</a></li>
+      <li><a href="#cursos">Cursos</a></li>
+      <li><a href="#testimonios">Testimonios</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="inicio">
+    <canvas id="stars-canvas"></canvas>
+    <div class="hero-content">
+      <h1>Conquistá<br>el Amanecer</h1>
+      <p>La oscuridad marca el inicio del camino. El amanecer será la recompensa para quienes estén preparados para alcanzarlo.</p>
+      <a class="btn" href="#nosotros">Ver más</a>
+    </div>
+  </section>
+
+  <!-- NUESTRA MISIÓN -->
+  <section id="nosotros">
+    <canvas id="stars-mision"></canvas>
+    <div class="mision-inner">
+      <div class="mision-text">
+        <h2>Nuestra Misión</h2>
+        <p>No guiamos personas hacia una montaña. Las acompañamos a descubrir hasta dónde pueden llegar.</p>
+        <p>En Cúspides creemos que cada ascenso comienza mucho antes del primer paso. Empieza con la preparación, la disciplina y el respeto por la naturaleza.</p>
+        <p>Diseñamos experiencias de montañismo donde la seguridad, el trabajo en equipo y la aventura conviven en cada expedición, para que cada cumbre sea un logro construido paso a paso.</p>
+        <a class="btn" href="#expediciones">Ver más</a>
+      </div>
+     <div class="mision-img">
+  <img src="mision.png" alt="Nuestra Misión" />
+</div>
+    </div>
+  </section>
+
+  <!-- EXPEDICIONES -->
+  <section id="expediciones">
+    <canvas id="stars-expediciones"></canvas>
+    <h2>Expediciones</h2>
+    <div class="exp-grid">
+     <div class="exp-card">
+  <img src="exp1.png" alt="Aconcagua" style="object-position: top;" />
+  <div class="overlay"><h3>Aconcagua</h3><p>La cima más alta de América</p></div>
+</div>
+      <div class="exp-card">
+        <img src="exp2.png" alt="Travesía Nocturna" />
+        <div class="overlay"><h3>Travesía Nocturna</h3><p>Bajo las estrellas hacia la cumbre</p></div>
+      </div>
+      <div class="exp-card">
+        <img src="exp3.jpg" alt="Alta Montaña" />
+        <div class="overlay"><h3>Alta Montaña</h3><p>Expediciones técnicas de alto nivel</p></div>
+      </div>
+      <div class="exp-card">
+        <img src="exp4.jpg" alt="Escalada" />
+        <div class="overlay"><h3>Escalada</h3><p>Técnica y fuerza en la vertical</p></div>
+      </div>
+      <div class="exp-card">
+        <img src="exp5.jpg" alt="Patagonia" />
+        <div class="overlay"><h3>Patagonia</h3><p>Viento, roca y libertad</p></div>
+      </div>
+      <div class="exp-card">
+       <img src="exp6.jpg" alt="Expedición Luna Llena" />
+        <div class="overlay"><h3>Expedición Luna Llena</h3><p>Una experiencia única bajo la luz lunar</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NUESTRO EQUIPO -->
+ <section id="equipo">
+    <h2>Nuestro Equipo</h2>
+    <div class="team-gallery">
+      <div class="team-photo">
+        <img src="guia.png" alt="Guía Principal" style="object-position: 65% center;" />
+        <div class="team-overlay">
+          <span class="team-name">Guía Principal</span>
+          <a class="btn" href="#contacto">Ver más</a>
+        </div>
+      </div>
+      <div class="team-photo">
+        <img src="instructor.png" alt="Instructor" style="object-position: 75% center;" />
+        <div class="team-overlay">
+          <span class="team-name">Instructor</span>
+          <a class="btn" href="#contacto">Ver más</a>
+        </div>
+      </div>
+      <div class="team-photo">
+        <img src="coordinador.png" alt="Coordinador" style="object-position: 75% center;"/>
+        <div class="team-overlay">
+          <span class="team-name">Coordinador</span>
+          <a class="btn" href="#contacto">Ver más</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREPARACIÓN -->
+  <section id="cursos">
+    <h2>Preparación</h2>
+    <div class="prep-grid">
+      <div class="prep-card">
+  <div class="img-wrap">
+    <img src="equipamiento.png" alt="Equipamiento" />
+  </div>
+  <div class="card-body">
+    <h3>Equipamiento</h3>
+    <p><p>Todo lo que necesitás saber antes de salir a la montaña. Te asesoramos en la elección de calzado técnico, capas térmicas, arnés, casco y todo el equipo de seguridad necesario según el tipo de expedición que vayas a realizar.</p>
+</p>
+  </div>
+</div>
+      <div class="prep-card">
+  <div class="img-wrap">
+    <img src="entrenamiento.jpg" alt="Entrenamiento" />
+  </div>
+  <div class="card-body">
+    <h3>Entrenamiento</h3>
+    <p>Plan de acondicionamiento físico diseñado específicamente para alpinismo y trekking de alta montaña. Trabajamos resistencia cardiovascular, fuerza de piernas y core, con sesiones de aclimatación progresiva en altura.</p>
+  </div>
+</div>
+    <div class="prep-card">
+  <div class="img-wrap">
+    <img src="seguridad.jpg" alt="Seguridad" />
+  </div>
+  <div class="card-body">
+    <h3>Seguridad</h3>
+    <p>Protocolos de seguridad, rescate y primeros auxilios en altura para cada tipo de expedición. Cada guía está certificado en manejo de emergencias, con comunicación satelital y planes de evacuación para cada ruta.</p>
+  </div>
+</div>
+    </div>
+  </section>
+
+  <!-- ESCUELA DE GUÍAS -->
+  <section id="guias">
+    <h2>Escuela de Guías</h2>
+    <div class="guias-grid">
+      <div class="guia-card">
+        <div class="num">01</div>
+        <h3>Fundamentos</h3>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna.</p>
+      </div>
+      <div class="guia-card">
+        <div class="num">02</div>
+        <h3>Técnica Avanzada</h3>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna.</p>
+      </div>
+      <div class="guia-card">
+        <div class="num">03</div>
+        <h3>Certificación</h3>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section id="testimonios">
+    <h2>Testimonios</h2>
+    <div class="test-grid">
+      <div class="test-card">
+        <p>«Hacer la cumbre bajo las estrellas fue una de las experiencias más mágicas de mi vida. El silencio de la montaña de noche te desconecta por completo de la rutina.»</p>
+        <div class="stars">★★★★★</div>
+        <span class="autor">-Martina V. (Trekking nocturno)</span>
+      </div>
+      <div class="test-card">
+        <p>«Como aficionado a la fotografía, este tour superó todas mis expectativas. No solo tuvimos las mejores vistas de la Vía Láctea sin contaminación lumínica.»</p>
+        <div class="stars">★★★★★</div>
+        <span class="autor">-Lucas C. (Expedición de Luna Llena)</span>
+      </div>
+      <div class="test-card">
+        <p>«Al principio me daba un poco de miedo caminar de noche, pero el equipo de profesionales transmite una tranquilidad tremenda. ¡Pienso repetir!»</p>
+        <div class="stars">★★★★★</div>
+        <span class="autor">-Julián M. (Travesía Nocturna de Alta Montaña)</span>
+      </div>
+      <div class="test-card">
+        <p>«Nos encantó. Es una forma totalmente distinta de vivir la naturaleza. El momento del fogón y las leyendas de montaña que nos contaron los guías a mitad de camino crearon un ambiente único.»</p>
+        <div class="stars">★★★★★</div>
+        <span class="autor">-Carolina R. (Senderismo Nocturno)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <p>¿Listo para comenzar tu ascenso? Escribinos y te orientamos.</p>
+    <div class="contact-form">
+      <input type="text" placeholder="Tu nombre" />
+      <input type="email" placeholder="Tu correo electrónico" />
+      <textarea placeholder="Tu mensaje"></textarea>
+      <button class="btn btn-navy">Enviar</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+   <a class="footer-logo" href="#inicio">
+  <img src="logo2.png" alt="Cúspides" style="height: 45px; opacity: 0.5;" />
+  <span class="footer-logo-text"></span>
+</a>
+    <p>© 2025 Cúspides. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    // Starfield
+    (function() {
+      const canvas = document.getElementById('stars-canvas');
+      const section = document.getElementById('inicio');
+      const stars = Array.from({length: 200}, () => ({
+        x: Math.random(), y: Math.random(),
+        r: Math.random() * 1.5 + 0.3,
+        a: Math.random() * 0.6 + 0.2
+      }));
+      function draw() {
+        canvas.width  = section.offsetWidth;
+        canvas.height = section.offsetHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        stars.forEach(s => {
+          ctx.beginPath();
+          ctx.arc(s.x * canvas.width, s.y * canvas.height, s.r, 0, Math.PI*2);
+          ctx.fillStyle = `rgba(255,255,255,${s.a})`;
+          ctx.fill();
+        });
+      }
+      draw();
+      window.addEventListener('resize', draw);
+    })();
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});
+      });
+    });
+    // Estrellas en Nuestra Misión
+(function() {
+  const canvas = document.getElementById('stars-mision');
+  const section = document.getElementById('nosotros');
+  const stars = Array.from({length: 100}, () => ({
+    x: Math.random(), y: Math.random(),
+    r: Math.random() * 1.3 + 0.3,
+    a: Math.random() * 0.5 + 0.2
+  }));
+  function draw() {
+    canvas.width = section.offsetWidth;
+    canvas.height = section.offsetHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    stars.forEach(s => {
+      ctx.beginPath();
+      ctx.arc(s.x * canvas.width, s.y * canvas.height, s.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(255,255,255,${s.a})`;
+      ctx.fill();
+    });
+  }
+  draw();
+  window.addEventListener('resize', draw);
+})();
+  </script>
+</body>
+</html>
